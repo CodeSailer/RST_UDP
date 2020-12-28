@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -87,7 +88,11 @@ namespace PcarsUDP
         private float _SplitTime;
         private double[,] _ParticipantInfo = new double[32, 16];
 
-
+        // test
+        private float _PersonalFastestLapTime;
+        private float _PersonalFastestSector1Time;
+        private float _PersonalFastestSector2Time;
+        private float _PersonalFastestSector3Time;
 
         public PCars2_UDP(UdpClient listen, IPEndPoint group)
         {
@@ -105,13 +110,52 @@ namespace PcarsUDP
             if (PacketType == 0)
             {
                 ReadTelemetryData(stream, binaryReader);
-
-
+            }
+            else if (PacketType == 7)
+            {
+                ReadLapTimes(stream, binaryReader);
             }
             else if (PacketType == 3)
             {
                 ReadTimings(stream, binaryReader);
             }
+
+        }
+        public void ReadLapTimes(Stream stream, BinaryReader binaryReader)
+        {
+            stream.Position = 16;
+
+            PersonalFastestLapTime = binaryReader.ReadSingle();stream.Position = 24;
+            if (ParticipantInfo[0, 8] == 2)
+            {
+                PersonalFastestSector1Time = binaryReader.ReadSingle();
+            }
+            if (ParticipantInfo[0, 8] == 3)
+            {
+                PersonalFastestSector2Time = binaryReader.ReadSingle();
+            }
+            if (ParticipantInfo[0, 8] == 1)
+            {
+                PersonalFastestSector3Time = binaryReader.ReadSingle();
+            }
+        }
+
+        public void SaveToFile()
+        {
+            int i = 0;
+            while(File.Exists("telemetry_" + i.ToString() + ".txt"))
+            {
+                i++;
+            }
+
+            File.AppendAllText("telemetry_" + i.ToString() + ".txt",
+                    ParticipantInfo[0, 13].ToString() + " " + Speed.ToString() + " " + PersonalFastestSector1Time.ToString() + " " +
+                    PersonalFastestSector2Time.ToString() + " " + PersonalFastestSector3Time.ToString() + " " + 
+                    PersonalFastestLapTime.ToString() + " " + TyreLayerTemp[0].ToString() + " " + TyreLayerTemp[1].ToString() + " " +
+                    TyreLayerTemp[2].ToString() + " " + TyreLayerTemp[3].ToString() + " " + Throttle.ToString() + " " + Brake.ToString() + " " + 
+                    Steering.ToString() + " " + LocalAcceleration[0].ToString() + " " + LocalAcceleration[1].ToString() + " " +
+                    LocalAcceleration[2].ToString()
+                    + Environment.NewLine);
 
         }
 
@@ -308,6 +352,8 @@ namespace PcarsUDP
 
             Wings[0] = binaryReader.ReadByte();
             Wings[1] = binaryReader.ReadByte();
+
+            SaveToFile();
         }
 
         public void ReadTimings(Stream stream, BinaryReader binaryReader)
@@ -442,6 +488,54 @@ namespace PcarsUDP
             set
             {
                 _PacketVersion = value;
+            }
+        }
+
+        public float PersonalFastestLapTime
+        {
+            get
+            {
+                return _PersonalFastestLapTime;
+            }
+            set
+            {
+                _PersonalFastestLapTime = value;
+            }
+        }
+
+        public float PersonalFastestSector1Time
+        {
+            get
+            {
+                return _PersonalFastestSector1Time;
+            }
+            set
+            {
+                _PersonalFastestSector1Time = value;
+            }
+        }
+
+        public float PersonalFastestSector2Time
+        {
+            get
+            {
+                return _PersonalFastestSector2Time;
+            }
+            set
+            {
+                _PersonalFastestSector2Time = value;
+            }
+        }
+
+        public float PersonalFastestSector3Time
+        {
+            get
+            {
+                return _PersonalFastestSector3Time;
+            }
+            set
+            {
+                _PersonalFastestSector3Time = value;
             }
         }
 
