@@ -5,3 +5,10 @@ C:\Users\destr\Documents\GitHub\RST_UDP\UDP_Example\UDP_Example\obj\Debug\UDP_Ex
 C:\Users\destr\Documents\GitHub\RST_UDP\UDP_Example\UDP_Example\obj\Debug\UDP_Example.csproj.CoreCompileInputs.cache
 C:\Users\destr\Documents\GitHub\RST_UDP\UDP_Example\UDP_Example\obj\Debug\UDP_Example.exe
 C:\Users\destr\Documents\GitHub\RST_UDP\UDP_Example\UDP_Example\obj\Debug\UDP_Example.pdb
+D:\Sviluppo\Documenti\Visual Studio 2013\GitHub\RST_UDP\UDP_Example\UDP_Example\bin\Debug\UDP_Example.exe.config
+D:\Sviluppo\Documenti\Visual Studio 2013\GitHub\RST_UDP\UDP_Example\UDP_Example\bin\Debug\UDP_Example.exe
+D:\Sviluppo\Documenti\Visual Studio 2013\GitHub\RST_UDP\UDP_Example\UDP_Example\bin\Debug\UDP_Example.pdb
+D:\Sviluppo\Documenti\Visual Studio 2013\GitHub\RST_UDP\UDP_Example\UDP_Example\obj\Debug\UDP_Example.csprojAssemblyReference.cache
+D:\Sviluppo\Documenti\Visual Studio 2013\GitHub\RST_UDP\UDP_Example\UDP_Example\obj\Debug\UDP_Example.csproj.CoreCompileInputs.cache
+D:\Sviluppo\Documenti\Visual Studio 2013\GitHub\RST_UDP\UDP_Example\UDP_Example\obj\Debug\UDP_Example.exe
+D:\Sviluppo\Documenti\Visual Studio 2013\GitHub\RST_UDP\UDP_Example\UDP_Example\obj\Debug\UDP_Example.pdb

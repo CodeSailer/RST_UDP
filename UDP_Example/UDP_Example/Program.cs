@@ -20,7 +20,7 @@ namespace UDP_Example
             {
                 uDP.readPackets();                      //Read Packets ever loop iteration
                 //Console.WriteLine(uDP.ParticipantInfo[uDP.ViewedParticipantIndex, 15]);
-                Console.WriteLine(uDP.ParticipantInfo[uDP.ViewedParticipantIndex, 14] + " " + uDP.ParticipantInfo[uDP.ViewedParticipantIndex, 8]+ " " + uDP.ParticipantInfo[uDP.ViewedParticipantIndex, 15]);
+                Console.WriteLine(uDP.Speed);
                 
                 //Write to console what our current speed is.
 
