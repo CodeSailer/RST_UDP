@@ -93,6 +93,8 @@ namespace PcarsUDP
         private float _PersonalFastestSector1Time;
         private float _PersonalFastestSector2Time;
         private float _PersonalFastestSector3Time;
+        bool createFile = true;
+        int fileNumber = 0;
 
         public PCars2_UDP(UdpClient listen, IPEndPoint group)
         {
@@ -142,13 +144,16 @@ namespace PcarsUDP
 
         public void SaveToFile()
         {
-            int i = 0;
-            while(File.Exists("telemetry_" + i.ToString() + ".txt"))
+            if (createFile)
             {
-                i++;
+                while (File.Exists("telemetry_" + fileNumber.ToString() + ".txt"))
+                {
+                    fileNumber++;
+                }
+                createFile = false;
             }
 
-            File.AppendAllText("telemetry_" + i.ToString() + ".txt",
+            File.AppendAllText("telemetry_" + fileNumber.ToString() + ".txt",
                     ParticipantInfo[0, 13].ToString() + " " + Speed.ToString() + " " + PersonalFastestSector1Time.ToString() + " " +
                     PersonalFastestSector2Time.ToString() + " " + PersonalFastestSector3Time.ToString() + " " + 
                     PersonalFastestLapTime.ToString() + " " + TyreLayerTemp[0].ToString() + " " + TyreLayerTemp[1].ToString() + " " +
